@@ -91,7 +91,7 @@ export function BouquetView({ bouquetId }: Props) {
     return (
       <div className="res-page active">
         <div className="res-nav">
-          <Link href="/" className="res-logo">Pavi's Flower Shop</Link>
+        <Link href="/" className="res-logo">Pavi&apos;s flower shop</Link>
         </div>
         <div className="res-stage">
           <p style={{ fontStyle: "italic", color: "var(--ink-muted)" }}>{loadError}</p>
@@ -109,7 +109,7 @@ export function BouquetView({ bouquetId }: Props) {
   return (
     <div className="res-page active">
       <nav className="res-nav">
-        <Link href="/" className="res-logo">fleurs de pavi</Link>
+        <Link href="/" className="res-logo">Pavi&apos;s flower shop</Link>
         <div className="res-actions">
           <Link href="/" className="res-btn">← make another</Link>
           <button type="button" className="res-btn" onClick={() => void copyLink()}>{shareLabel}</button>
