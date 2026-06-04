@@ -182,7 +182,7 @@ export default function BouquetCanvas({
 
         const leftPts: [number, number][] = [];
         const rightPts: [number, number][] = [];
-        for (const [row, [l, r]] of wrap.rowBounds) {
+        for (const [row, [l, r]] of Array.from(wrap.rowBounds)) {
           if (row >= wrap.maxWidthRow && row < wrap.ribbonRow) {
             leftPts.push([wrapX + l, wrapY + row]);
             rightPts.push([wrapX + r, wrapY + row]);
