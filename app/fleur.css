@@ -792,12 +792,46 @@ textarea::placeholder, input::placeholder {
   .bq { width: 86% !important; max-width: 340px !important; margin: 0 auto !important; }
   .bq-area { justify-content: center !important; }
 
-  /* postcard fits phone width */
-  .pc { width: 100% !important; max-width: 380px !important; height: auto !important; aspect-ratio: 5 / 3.4; }
-  .pc-msg { font-size: 16px !important; }
-  .pc-line { font-size: 14px !important; }
-  .pc-stamp { width: 46px !important; }
-  .pc-postmark { width: 60px !important; }
+  /* ── REPLACE the .pc rules inside your @media (max-width: 600px) block with these ── */
+
+  /* postcard: stack vertically on phones so nothing overlaps */
+  .pc {
+    width: 100% !important;
+    max-width: 380px !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    padding: 28px 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  /* hide the vertical divider + postmark on mobile (they cause the overlap) */
+  .pc-divider { display: none !important; }
+  .pc-postmark { display: none !important; }
+
+  /* note: full width, top */
+  .pc-left {
+    position: static !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  .pc-msg { font-size: 18px !important; }
+
+  /* right side becomes a normal block below the note */
+  .pc-right { position: static !important; width: 100% !important; }
+
+  /* stamp sits top-right of the address area */
+  .pc-stamp { position: absolute !important; top: 24px !important; right: 24px !important; width: 56px !important; }
+
+  /* address block: normal flow, full width */
+  .pc-addr {
+    position: static !important;
+    left: auto !important; right: auto !important; bottom: auto !important;
+    width: 100% !important;
+    gap: 16px !important;
+    padding-right: 70px !important;  /* leave room so it clears the stamp */
+  }
+  .pc-line { font-size: 16px !important; }
 
   .res-letter-text { font-size: 17px !important; }
 
