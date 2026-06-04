@@ -724,10 +724,12 @@ textarea::placeholder, input::placeholder {
    .bq-area { position:relative; display:flex; justify-content:center; width:100%; }
    .bq { width:600px; max-width:92vw; position:relative; z-index:2; }
    
-   .about-panel { position:absolute; top:50%; left:calc(50% + 330px); width:280px;
-     opacity:0; pointer-events:none; transform:translate(-12px,-50%);
-     transition:opacity 0.45s ease, transform 0.45s ease; }
-   .about-panel.open { opacity:1; pointer-events:auto; transform:translate(0,-50%); }
+   .about-panel {
+    width: 100%; max-width: 360px; margin: 0 auto;
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.45s ease, opacity 0.3s ease;
+  }
+  .about-panel.open { max-height: 600px; opacity: 1; margin-top: 8px; }
    .about-row { display:flex; gap:12px; padding:11px 0; border-bottom:0.5px solid rgba(26,23,20,0.1); }
    .about-row .dot { width:11px; height:11px; border-radius:50%; margin-top:5px; flex-shrink:0; }
    .about-row .fname { font-family:var(--font-cormorant),'Cormorant Garamond',serif; font-style:italic;
@@ -765,10 +767,46 @@ textarea::placeholder, input::placeholder {
      font-size:22px; line-height:1.9; color:var(--ink-soft); }
    .res-date { font-size:13px; letter-spacing:0.12em; color:var(--ink-muted); margin-top:8px;
      font-family:var(--font-jost),'Jost',sans-serif; }
-   
-   @media (max-width:768px) {
-     .about-panel { position:static; transform:none; width:100%; max-width:340px; margin-top:8px;
-       opacity:1; pointer-events:auto; max-height:0; overflow:hidden; transition:max-height 0.4s ease, opacity 0.3s; }
-     .about-panel.open { max-height:400px; }
-     .bq { width:100%; }
-   }
+  
+   /* ════════════════════════════════════════════════════════════════
+   MOBILE FIXES + BOUQUET SIZING
+   Paste this whole block at the VERY END of your CSS file.
+   (Desktop bouquet size is set here too — overrides the .bq above.)
+   ════════════════════════════════════════════════════════════════ */
+
+/* desktop: bigger bouquet + push the side panel out so it clears it */
+.bq { width: 780px !important; }
+
+/* ── PHONE SCREENS (≤ 600px) ── */
+@media (max-width: 600px) {
+
+  /* result nav: logo on top, buttons below */
+  .res-nav { flex-direction: column; align-items: center; gap: 16px; padding: 20px 5vw; text-align: center; }
+  .res-logo { font-size: 26px !important; }
+  .res-actions { gap: 10px; }
+  .res-btn { font-size: 12px !important; padding: 12px 18px !important; letter-spacing: 0.1em !important; }
+
+  .res-stage { padding: 32px 16px 70px; gap: 32px; }
+
+  /* bouquet: fills phone nicely, centered, not too big */
+  .bq { width: 86% !important; max-width: 340px !important; margin: 0 auto !important; }
+  .bq-area { justify-content: center !important; }
+
+  /* postcard fits phone width */
+  .pc { width: 100% !important; max-width: 380px !important; height: auto !important; aspect-ratio: 5 / 3.4; }
+  .pc-msg { font-size: 16px !important; }
+  .pc-line { font-size: 14px !important; }
+  .pc-stamp { width: 46px !important; }
+  .pc-postmark { width: 60px !important; }
+
+  .res-letter-text { font-size: 17px !important; }
+
+  /* landing + form on mobile */
+  #landing { grid-template-columns: 1fr !important; padding: 50px 6vw !important; gap: 24px !important; }
+  .main-heading { font-size: clamp(44px, 13vw, 64px) !important; }
+  .cart-wrap { order: -1; }
+  .cart-wrap svg { max-width: 300px !important; }
+  .section-title { font-size: clamp(30px, 8vw, 40px) !important; }
+  .field-prompt { font-size: 20px !important; }
+  .cta-btn { font-size: 24px !important; padding: 18px 48px !important; }
+}

@@ -120,27 +120,29 @@ export function BouquetView({ bouquetId }: Props) {
         {/* for <name> */}
         <div className="res-to">for <b>{toName}</b></div>
 
-        {/* big bouquet + side overlay panel */}
+        {/* big bouquet */}
         <div className="bq-area">
           <div className="bq">
             <BouquetCanvas flowers={data.flowerKeys ?? []} seed={seedFromId(bouquetId)} />
-          </div>
-          <div className={`about-panel${aboutOpen ? " open" : ""}`}>
-            {flowers.map((f) => (
-              <div key={f.name + f.why} className="about-row">
-                <div className="dot" style={{ background: f.color }} />
-                <div>
-                  <span className="fname">{f.name}</span>
-                  <span className="fwhy">{f.why}</span>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
         <button type="button" className={`about-toggle${aboutOpen ? " open" : ""}`} onClick={() => setAboutOpen((o) => !o)}>
           <span className="about-ic">+</span> about this bouquet
         </button>
+
+        {/* about panel — expands below the toggle */}
+        <div className={`about-panel${aboutOpen ? " open" : ""}`}>
+          {flowers.map((f) => (
+            <div key={f.name + f.why} className="about-row">
+              <div className="dot" style={{ background: f.color }} />
+              <div>
+                <span className="fname">{f.name}</span>
+                <span className="fwhy">{f.why}</span>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {/* POSTCARD */}
         <div className="pc">
