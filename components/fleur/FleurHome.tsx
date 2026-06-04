@@ -94,17 +94,18 @@ export function FleurHome() {
           )
         : [];
 
-      const snapshot: BouquetPayload = {
-        to: String(json.to ?? ""),
-        from: String(json.from ?? ""),
-        emotion: String(json.emotion ?? ""),
-        messageHtml: String(json.messageHtml ?? ""),
-        day: typeof json.day === "number" ? json.day : null,
-        month: typeof json.month === "number" ? json.month : null,
-        year: typeof json.year === "number" ? json.year : null,
-        letter: String(json.letter ?? ""),
-        flowers,
-      };
+        const snapshot: BouquetPayload = {
+          to: String(json.to ?? ""),
+          from: String(json.from ?? ""),
+          emotion: String(json.emotion ?? ""),
+          messageHtml: String(json.messageHtml ?? ""),
+          day: typeof json.day === "number" ? json.day : null,
+          month: typeof json.month === "number" ? json.month : null,
+          year: typeof json.year === "number" ? json.year : null,
+          letter: String(json.letter ?? ""),
+          flowers,
+          flowerKeys: Array.isArray((json as any).flowerKeys) ? (json as any).flowerKeys : [],
+        };
 
       if (!persisted) {
         sessionStorage.setItem(
