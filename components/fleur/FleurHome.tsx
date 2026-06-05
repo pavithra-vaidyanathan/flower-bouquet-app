@@ -210,39 +210,33 @@ export function FleurHome() {
             <div className="date-row">
               <div className="date-field">
                 <span className="date-sublabel">day</span>
-                <input
-                  type="number"
-                  id="dateDay"
-                  name="day"
-                  placeholder="—"
-                  min={1}
-                  max={31}
-                  style={fieldErrors.date ? { borderColor: "#b06" } : undefined}
-                />
+                <select id="dateDay" name="day" className="date-select" defaultValue=""
+                  style={fieldErrors.date ? { borderColor: "#b06" } : undefined}>
+                  <option value="" disabled>day</option>
+                  {Array.from({ length: 31 }, (_, i) => i + 1).map((d) => (
+                    <option key={d} value={d}>{d}</option>
+                  ))}
+                </select>
               </div>
               <div className="date-field">
                 <span className="date-sublabel">month</span>
-                <input
-                  type="number"
-                  id="dateMonth"
-                  name="month"
-                  placeholder="—"
-                  min={1}
-                  max={12}
-                  style={fieldErrors.date ? { borderColor: "#b06" } : undefined}
-                />
+                <select id="dateMonth" name="month" className="date-select" defaultValue=""
+                  style={fieldErrors.date ? { borderColor: "#b06" } : undefined}>
+                  <option value="" disabled>month</option>
+                  {["January","February","March","April","May","June","July","August","September","October","November","December"].map((name, i) => (
+                    <option key={name} value={i + 1}>{name}</option>
+                  ))}
+                </select>
               </div>
               <div className="date-field">
                 <span className="date-sublabel">year</span>
-                <input
-                  type="number"
-                  id="dateYear"
-                  name="year"
-                  placeholder="——"
-                  min={2024}
-                  max={2030}
-                  style={fieldErrors.date ? { borderColor: "#b06" } : undefined}
-                />
+                <select id="dateYear" name="year" className="date-select" defaultValue=""
+                  style={fieldErrors.date ? { borderColor: "#b06" } : undefined}>
+                  <option value="" disabled>year</option>
+                  {[2025, 2026, 2027, 2028].map((y) => (
+                    <option key={y} value={y}>{y}</option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>

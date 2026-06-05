@@ -23,31 +23,6 @@
     cursor: none;
   }
 
-  /* Custom cursor */
-  .cursor {
-    width: 8px; height: 8px;
-    background: var(--ink);
-    border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.15s ease, opacity 0.2s;
-    transform: translate(-50%, -50%);
-  }
-  .cursor-ring {
-    width: 28px; height: 28px;
-    border: 0.5px solid var(--ink-muted);
-    border-radius: 50%;
-    position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9998;
-    transition: transform 0.35s ease, width 0.2s, height 0.2s;
-    transform: translate(-50%, -50%);
-    opacity: 0.6;
-  }
-
   /* ─── GRAIN OVERLAY ─── */
   body::before {
     content: '';
@@ -843,4 +818,36 @@ textarea::placeholder, input::placeholder {
   .section-title { font-size: clamp(30px, 8vw, 40px) !important; }
   .field-prompt { font-size: 20px !important; }
   .cta-btn { font-size: 24px !important; padding: 18px 48px !important; }
+}
+
+/* restore normal cursor */
+* { cursor: auto !important; }
+a, button, .cta-btn, .scroll-cue, .res-btn, .about-toggle, select, .fmt-btn, .share-btn {
+  cursor: pointer !important;
+}
+
+/* ── ELEGANT DATE DROPDOWNS ── */
+.date-select {
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  background: transparent; border: none;
+  border-bottom: 0.5px solid rgba(26,23,20,0.2);
+  outline: none;
+  font-family: var(--font-cormorant), 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 22px; color: var(--ink-soft);
+  padding: 10px 24px 10px 2px; width: 100%; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b5a50' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 2px center;
+  transition: border-color 0.3s;
+}
+.date-select:focus { border-bottom-color: var(--ink-soft); }
+.date-select:invalid { color: rgba(90,78,70,0.45); }
+.date-select option { color: var(--ink); font-style: normal; font-size: 16px; }
+
+/* date row spacing — grouped, not spread out */
+.date-row { grid-template-columns: 1fr 1.4fr 1fr !important; gap: 20px !important; max-width: 460px !important; }
+@media (max-width: 600px) {
+  .date-row { grid-template-columns: 1fr 1.3fr 1fr !important; gap: 10px !important; max-width: 100% !important; }
+  .date-field { gap: 6px !important; }
+  .date-select { font-size: 16px !important; padding-right: 16px !important; }
+  .date-sublabel { font-size: 11px !important; }
 }
